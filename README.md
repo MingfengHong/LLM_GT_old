@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-本项目旨在使用大型语言模型（LLM）辅助进行扎根理论（Grounded Theory）分析。整个流程以“AI 模型开源案例”作为研究对象，通过多个自动化阶段，从原始案例文本中提取因果关系，并逐步构建理论模型。项目代码清晰地划分了从数据提取到理论饱和度检验的五个核心阶段。
+本项目旨在使用大型语言模型（LLM）辅助进行扎根理论（Grounded Theory）分析。整个流程以“开源案例”作为研究对象，通过多个自动化阶段，从原始案例文本中提取因果关系，并逐步构建理论模型。项目代码清晰地划分了从数据提取到理论饱和度检验的五个核心阶段。
 
 ## 项目流程
 
@@ -96,7 +96,7 @@ Zhou, Y., Yuan, Y., Huang, K., & Hu, X. (2024). Can ChatGPT perform a grounded t
 
 ## Project Overview
 
-This project aims to use Large Language Models (LLMs) to assist with Grounded Theory analysis. The entire workflow uses "Open Source AI Model Cases" as the subject of study. Through several automated stages, it extracts causal relationships from the original case texts and progressively builds a theoretical model. The project's code is clearly divided into five core stages, from data extraction to the theory saturation test.
+This project aims to use Large Language Models (LLMs) to assist with Grounded Theory analysis. The entire workflow uses "Open Source Cases" as the subject of study. Through several automated stages, it extracts causal relationships from the original case texts and progressively builds a theoretical model. The project's code is clearly divided into five core stages, from data extraction to the theory saturation test.
 
 ## Project Workflow
 
