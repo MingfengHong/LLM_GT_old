@@ -1,6 +1,6 @@
 # AI 辅助扎根理论分析：旧版代码
 
-**重要提示：** 这是本项目的旧版代码。最新版本的代码将随相关研究论文一同发布在以下网址：[https://github.com/MingfengHong/llm_assisted_gt](https://github.com/MingfengHong/llm_assisted_gt)
+**重要提示：** 这是本项目的旧版代码。最新版本的代码将随相关研究论文一同发布在以下网址：https://github.com/mingfenghong/llm_assisted_grounded_theory
 
 ## 项目概述
 
