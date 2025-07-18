@@ -1,6 +1,98 @@
+# AI-Assisted Grounded Theory Analysis: Legacy Code
+
+**Important Note:** This is the old version of the code for this project. The latest version of the code will be released together with the relevant research paper at the following URL after all debugging is complete and the paper is submitted: https://github.com/mingfenghong/llm_assisted_grounded_theory
+
+## Project Overview
+
+This project aims to use Large Language Models (LLMs) to assist with Grounded Theory analysis. The entire workflow uses "Open Source Cases" as the subject of study. Through several automated stages, it extracts causal relationships from the original case texts and progressively builds a theoretical model. The project's code is clearly divided into five core stages, from data extraction to the theory saturation test.
+
+## Project Workflow
+
+This project connects five core stages through `main.py`, with each stage calling the DeepSeek API to perform specific analysis tasks:
+
+1.  **Stage 1: Information Extraction**
+    * **Script**: `stages/stage1_information_extraction.py`
+    * **Task**: Reads the text of AI model open-source cases from the input Excel file (`test.xlsx`) and extracts causal relationship pairs.
+    * **Output**: Generates `step1.xlsx`, which includes the case number, causal pair number, original text of the cause, original text of the effect, and the source text snippet.
+
+2.  **Stage 2: Open Coding**
+    * **Script**: `stages/stage2_open_coding.py`
+    * **Task**: Reads the causal pairs from `step1.xlsx` and performs open coding on the "cause" and "effect" to generate concepts and subcategories.
+    * **Output**: Generates `step2.xlsx`, adding `cause_concept`, `effect_concept`, `cause_subcategory`, and `effect_subcategory` fields to the existing data.
+
+3.  **Stage 3: Axial Coding**
+    * **Script**: `stages/stage3_axial_coding.py`
+    * **Task**: Extracts all subcategories from `step2.xlsx` and consolidates them into main categories through cluster analysis, providing explanations for each.
+    * **Output**: Generates `step3.xlsx`, which contains the main categories, their explanations, and a list of subcategories under each main category.
+
+4.  **Stage 4: Selective Coding**
+    * **Script**: `stages/stage4_selective_coding.py`
+    * **Task**: Identifies the core category from the main categories in `step3.xlsx` and elaborates on its relationship with other main categories.
+    * **Output**: Generates `step4.xlsx`, containing the core category and its explanation.
+
+5.  **Stage 5: Data Saturation Test**
+    * **Script**: `stages/stage5_saturation_test.py`
+    * **Task**: Uses data from `step2.xlsx` and `step3.xlsx` to test whether all subcategories can be covered by the existing main categories. If not, it proposes new main categories.
+    * **Output**: Generates `step5.xlsx`, which shows the classification label for each subcategory or proposes new categories.
+
+## Prompt Source
+
+The prompts used for analysis in each stage of this project are from the following research:
+
+Zhou, Y., Yuan, Y., Huang, K., & Hu, X. (2024). Can ChatGPT perform a grounded theory approach to do risk analysis? An empirical study. *Journal of Management Information Systems, 41*(4), 982-1015.
+
+## Project Structure
+```
+/
+|-- main.py                     # Main program entry point
+|-- data/
+|   |-- input_data/
+|   |   `-- test.xlsx           # Raw input data
+|   |-- output_data/            # Output results for all stages
+|   |   |-- step1.xlsx
+|   |   |-- step2.xlsx
+|   |   |-- step3.xlsx
+|   |   |-- step4.xlsx
+|   |   `-- step5.xlsx
+|   `-- data_processing.py      # Utility functions for data reading, writing, and processing
+|-- stages/                     # Scripts for each analysis stage
+|   |-- stage1_information_extraction.py
+|   |-- stage2_open_coding.py
+|   |-- stage3_axial_coding.py
+|   |-- stage4_selective_coding.py
+|   `-- stage5_saturation_test.py
+|-- api/
+|   `-- deepseek_client.py      # Client that encapsulates DeepSeek API calls
+`-- README.md                   # This file
+```
+
+## How to Run
+
+1.  **Configure Environment**:
+    * Install the required Python libraries, mainly `pandas` and `openai`.
+    * Configure your DeepSeek API key in the `api/deepseek_client.py` file.
+
+2.  **Prepare Data**:
+    * Organize your raw case data into the `data/input_data/test.xlsx` file. This file should contain at least two columns: `Number of Cases` and `Case text`.
+
+3.  **Run Analysis**:
+    * Run the main program `main.py`.
+        ```bash
+        python main.py
+        ```
+    * The program will execute all five stages in sequence and generate intermediate and final result files in the `data/output_data/` directory.
+
+## Dependencies
+
+* pandas
+* openai
+
+-----
+
+
 # AI 辅助扎根理论分析：旧版代码
 
-**重要提示：** 这是本项目的旧版代码。最新版本的代码将随相关研究论文一同发布在以下网址：https://github.com/mingfenghong/llm_assisted_grounded_theory
+**重要提示：** 这是本项目的旧版代码。最新版本的代码将在全部调试完成与论文提交后随相关研究论文一同发布在以下网址：https://github.com/mingfenghong/llm_assisted_grounded_theory
 
 ## 项目概述
 
@@ -90,91 +182,3 @@ Zhou, Y., Yuan, Y., Huang, K., & Hu, X. (2024). Can ChatGPT perform a grounded t
 
 ---
 
-# AI-Assisted Grounded Theory Analysis: Legacy Code
-
-**Important Note:** This is the legacy code for the project. The latest version of the code will be released with the corresponding research paper at the following URL: [https://github.com/MingfengHong/llm_assisted_gt](https://github.com/MingfengHong/llm_assisted_gt)
-
-## Project Overview
-
-This project aims to use Large Language Models (LLMs) to assist with Grounded Theory analysis. The entire workflow uses "Open Source Cases" as the subject of study. Through several automated stages, it extracts causal relationships from the original case texts and progressively builds a theoretical model. The project's code is clearly divided into five core stages, from data extraction to the theory saturation test.
-
-## Project Workflow
-
-This project connects five core stages through `main.py`, with each stage calling the DeepSeek API to perform specific analysis tasks:
-
-1.  **Stage 1: Information Extraction**
-    * **Script**: `stages/stage1_information_extraction.py`
-    * **Task**: Reads the text of AI model open-source cases from the input Excel file (`test.xlsx`) and extracts causal relationship pairs.
-    * **Output**: Generates `step1.xlsx`, which includes the case number, causal pair number, original text of the cause, original text of the effect, and the source text snippet.
-
-2.  **Stage 2: Open Coding**
-    * **Script**: `stages/stage2_open_coding.py`
-    * **Task**: Reads the causal pairs from `step1.xlsx` and performs open coding on the "cause" and "effect" to generate concepts and subcategories.
-    * **Output**: Generates `step2.xlsx`, adding `cause_concept`, `effect_concept`, `cause_subcategory`, and `effect_subcategory` fields to the existing data.
-
-3.  **Stage 3: Axial Coding**
-    * **Script**: `stages/stage3_axial_coding.py`
-    * **Task**: Extracts all subcategories from `step2.xlsx` and consolidates them into main categories through cluster analysis, providing explanations for each.
-    * **Output**: Generates `step3.xlsx`, which contains the main categories, their explanations, and a list of subcategories under each main category.
-
-4.  **Stage 4: Selective Coding**
-    * **Script**: `stages/stage4_selective_coding.py`
-    * **Task**: Identifies the core category from the main categories in `step3.xlsx` and elaborates on its relationship with other main categories.
-    * **Output**: Generates `step4.xlsx`, containing the core category and its explanation.
-
-5.  **Stage 5: Data Saturation Test**
-    * **Script**: `stages/stage5_saturation_test.py`
-    * **Task**: Uses data from `step2.xlsx` and `step3.xlsx` to test whether all subcategories can be covered by the existing main categories. If not, it proposes new main categories.
-    * **Output**: Generates `step5.xlsx`, which shows the classification label for each subcategory or proposes new categories.
-
-## Prompt Source
-
-The prompts used for analysis in each stage of this project are from the following research:
-
-Zhou, Y., Yuan, Y., Huang, K., & Hu, X. (2024). Can ChatGPT perform a grounded theory approach to do risk analysis? An empirical study. *Journal of Management Information Systems, 41*(4), 982-1015.
-
-## Project Structure
-```
-/
-|-- main.py                     # Main program entry point
-|-- data/
-|   |-- input_data/
-|   |   `-- test.xlsx           # Raw input data
-|   |-- output_data/            # Output results for all stages
-|   |   |-- step1.xlsx
-|   |   |-- step2.xlsx
-|   |   |-- step3.xlsx
-|   |   |-- step4.xlsx
-|   |   `-- step5.xlsx
-|   `-- data_processing.py      # Utility functions for data reading, writing, and processing
-|-- stages/                     # Scripts for each analysis stage
-|   |-- stage1_information_extraction.py
-|   |-- stage2_open_coding.py
-|   |-- stage3_axial_coding.py
-|   |-- stage4_selective_coding.py
-|   `-- stage5_saturation_test.py
-|-- api/
-|   `-- deepseek_client.py      # Client that encapsulates DeepSeek API calls
-`-- README.md                   # This file
-```
-
-## How to Run
-
-1.  **Configure Environment**:
-    * Install the required Python libraries, mainly `pandas` and `openai`.
-    * Configure your DeepSeek API key in the `api/deepseek_client.py` file.
-
-2.  **Prepare Data**:
-    * Organize your raw case data into the `data/input_data/test.xlsx` file. This file should contain at least two columns: `Number of Cases` and `Case text`.
-
-3.  **Run Analysis**:
-    * Run the main program `main.py`.
-        ```bash
-        python main.py
-        ```
-    * The program will execute all five stages in sequence and generate intermediate and final result files in the `data/output_data/` directory.
-
-## Dependencies
-
-* pandas
-* openai
